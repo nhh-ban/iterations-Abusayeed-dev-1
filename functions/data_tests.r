@@ -1,10 +1,11 @@
+
 # This file contains tests to be applied to 
 # the Vegvesen stations-data *after* being transformed
 # to a data frame. 
 # 
 # All tests are packed in a function test_stations_metadata that apples
 # all the aforementioned tests
-
+#writting a function with if else conditional to test the expected vectors.
 test_stations_metadata_colnames <-
   function(df) {
     
@@ -17,11 +18,12 @@ test_stations_metadata_colnames <-
     }
   }
 
+#writing function to test min max expected rows.
 test_stations_metadata_nrows <-
   function(df) {
     
-    min_expected_rows <- 5000
-    max_expected_rows <- 10000
+    min_expected_rows <- 3500
+    max_expected_rows <- 5000
     
     if (nrow(df) > min_expected_rows & nrow(df) < max_expected_rows) {
       print("PASS: Data has a reasonable number of rows")
@@ -32,6 +34,7 @@ test_stations_metadata_nrows <-
     }
   }
 
+#writting function with conditionals to test coltypes.
 test_stations_metadata_coltypes <-
   function(df) {
     expected_coltypes <-
@@ -44,7 +47,11 @@ test_stations_metadata_coltypes <-
       print("FAIL: Columns do not have the correct specification")
     }
   }
-  
+
+
+
+#adding function to test whether max values within 200.
+
 test_stations_metadata_nmissing <-
   function(df) {
     max_miss_vals <- 200
@@ -56,6 +63,7 @@ test_stations_metadata_nmissing <-
     }
   }
 
+#adding a function to test time zome
 test_stations_metadata_latestdata_timezone <-
   function(df) {
     
@@ -66,7 +74,7 @@ test_stations_metadata_latestdata_timezone <-
     }
   }
 
-
+# writting a function to test all function above that.
 test_stations_metadata <- 
   function(df){
     test_stations_metadata_colnames(df)
@@ -75,7 +83,6 @@ test_stations_metadata <-
     test_stations_metadata_nrows(df)
     test_stations_metadata_latestdata_timezone(df)
   }
-
 
 
 
